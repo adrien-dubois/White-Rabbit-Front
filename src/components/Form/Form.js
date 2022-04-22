@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { 
   FaEnvelope, 
   FaHashtag, 
-  FaSlackHash, 
   FaTags, 
   FaUser 
 } from 'react-icons/fa'
-import { Div } from './Form.elements'
+import { Div } from './Form.elements';
+import FileBase from 'react-file-base64';
 
 const Form = () => {
 
@@ -103,6 +103,15 @@ const Form = () => {
             onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
           />
           <label className='input-field__label' htmlFor="tags">Tags</label>
+        </div>
+
+        {/* IMAGES */}
+        <div className="input-file">
+          <FileBase
+            type="file"
+            multiple={false}
+            onDone={({base64}) => setPostData({ ...postData, selectedFile: base64 })}
+          />
         </div>
 
         {/* SUBMIT */}
