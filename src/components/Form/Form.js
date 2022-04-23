@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
   FaEnvelope, 
   FaHashtag, 
@@ -7,12 +7,13 @@ import {
 } from 'react-icons/fa'
 import { Div } from './Form.elements';
 import FileBase from 'react-file-base64';
-import { useDispatch } from 'react-redux';
-import { createPost } from '../../actions/posts';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost, updatePost } from '../../actions/posts';
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
 
   const dispatch = useDispatch();
+  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
   const [postData, setPostData] = useState({
     creator: '', 
     title: '',
@@ -21,10 +22,18 @@ const Form = () => {
     selectedFile: ''
   })
 
+  useEffect(() => {
+    if(post) setPostData(post);
+  }, [post])
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createPost(postData));
+    if(currentId) {
+      dispatch(updatePost(currentId, postData))
+    } else {
+      dispatch(createPost(postData));
+    }
   }
 
   const clear = () => {
@@ -40,7 +49,7 @@ const Form = () => {
         autoComplete='off'
         className='form-tip'
       >
-        <h6 className='form-title'>Créer un tip</h6>
+        <h6 className='form-title'>{currentId ? 'Modifier' : 'Créer'} un tip</h6>
 
         {/* CREATOR */}
         <div className="input-field blue-input">

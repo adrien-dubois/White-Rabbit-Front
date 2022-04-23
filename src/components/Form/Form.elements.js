@@ -31,14 +31,7 @@ export const Div = styled.div`
             position: relative;
             width: 100%;
             text-align: center;
-
-            &::before{
-                content: 'Créer un tip';
-                position: absolute;
-                top: 25%;
-                left: 32%;
-                opacity: 0.07;
-            }
+            text-shadow: 7px 8px 1px rgba(0, 0, 0, .2);
         }
 
         .input-field{

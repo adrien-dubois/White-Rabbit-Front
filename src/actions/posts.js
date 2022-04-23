@@ -1,6 +1,7 @@
 import * as api from '../api';
 
 // Create an Action Creators ( functions that return actions)
+
 export const getPosts = () => async (dispatch) => {
 
     try {
@@ -28,5 +29,18 @@ export const createPost= (post) => async (dispatch) => {
         })
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const updatePost = (id, post) => async (dispatch) => {
+    try {
+        const { data } = await api.updatePost(id, post);
+
+        dispatch({
+            type: 'UPDATE',
+            payload: data
+        })
+    } catch (error) {
+        console.log(error.message);
     }
 }
