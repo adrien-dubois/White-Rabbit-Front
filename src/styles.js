@@ -29,7 +29,7 @@ export const Div = styled.div`
                     letter-spacing: 1px;
                 }
                 p{
-                    margin-bottom: 1.5rem;
+                    margin: 1.5rem 0;
                     font-size: calc(1.2rem+1.2vw);
                     letter-spacing: 1px;
 

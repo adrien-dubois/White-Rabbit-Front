@@ -7,9 +7,12 @@ import {
 } from 'react-icons/fa'
 import { Div } from './Form.elements';
 import FileBase from 'react-file-base64';
+import { useDispatch } from 'react-redux';
+import { createPost } from '../../actions/posts';
 
 const Form = () => {
 
+  const dispatch = useDispatch();
   const [postData, setPostData] = useState({
     creator: '', 
     title: '',
@@ -18,8 +21,14 @@ const Form = () => {
     selectedFile: ''
   })
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    dispatch(createPost(postData));
+  }
+
+  const clear = () => {
+    
   }
 
   return (
@@ -115,9 +124,14 @@ const Form = () => {
         </div>
 
         {/* SUBMIT */}
-        <button type="submit" className='btn'>
-            Envoyer
-        </button>
+        <div className="input-buttons">
+          <button type="submit" className='input-buttons__btn'>
+              Envoyer
+          </button>
+          <button className='input-buttons__btn-clear' onClick={clear}>
+              Effacer
+          </button>
+        </div>
 
       </form>
     </Div>

@@ -2,6 +2,13 @@ import styled from 'styled-components';
 
 export const Div = styled.div`
 
+    padding: 10px;
+    border: 2px solid rgba(255, 255, 255, .3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
     .form-tip{
         display: flex;
         align-items: center;
@@ -17,13 +24,21 @@ export const Div = styled.div`
         }
 
         .form-title{
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 10px;
-            background-color: #var(--white-color);
-            background-image: radial-gradient(at 4% 36%, hsla(0,0%,100%,1) 0, transparent 53%), radial-gradient(at 100% 60%, rgb(0, 0, 0) 0, transparent 50%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+            color: white;
+            text-transform: uppercase;
+            position: relative;
+            width: 100%;
+            text-align: center;
+
+            &::before{
+                content: 'Créer un tip';
+                position: absolute;
+                top: 25%;
+                left: 32%;
+                opacity: 0.07;
+            }
         }
 
         .input-field{
@@ -36,6 +51,11 @@ export const Div = styled.div`
             display: grid;
             grid-template-columns: 15% 85%;
             padding: 0.4rem;
+            transition: all .2s ease-in;
+
+            &:hover{
+                border: 2px solid rgba(255, 255, 255, .3);
+            }
 
             &__icon{
                 text-align: center;
@@ -78,24 +98,52 @@ export const Div = styled.div`
             left: 1.2rem;
         }
 
-        .btn{
-            width: 150px;
-            height: 49px;
-            border: none;
-            outline: none;
-            border-radius: 49px;
-            cursor: pointer;
-            color: var(--white-color);
-            text-transform: uppercase;
-            font-weight: 600;
-            margin: 10px 0;
-            background-image: linear-gradient(to right, #f43b47 0%, #453a94 100%);
-            background-size: 200% auto;
-            box-shadow: 0 0 10px #eee;
-            transition: all .3s ease-out ;
+        .input-buttons{
 
-            &:hover{
-                background-position: right center;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+            &__btn{
+                width: 150px;
+                height: 49px;
+                border: none;
+                outline: none;
+                border-radius: 4px;
+                cursor: pointer;
+                color: var(--white-color);
+                text-transform: uppercase;
+                font-weight: 600;
+                margin: 10px 0;
+                background-image: linear-gradient(to right, #f43b47 0%, #453a94 100%);
+                background-size: 200% auto;
+                box-shadow: 0 0 10px #eee;
+                transition: all .3s ease-out ;
+    
+                &:hover{
+                    background-position: right center;
+                }
+            }
+
+            &__btn-clear{
+                width: 150px;
+                height: 33px;
+                border: none;
+                outline: none;
+                border-radius: 4px;
+                cursor: pointer;
+                color: var(--white-color);
+                text-transform: uppercase;
+                font-weight: 600;
+                margin: 10px 0;
+                background-image: linear-gradient(to right, #f43b47 0%, #453a94 100%);
+                background-size: 200% auto;
+                box-shadow: 0 0 10px #eee;
+                transition: all .3s ease-out ;
+    
+                &:hover{
+                    background-position: right center;
+                }
             }
         }
         .input-file {
@@ -127,7 +175,7 @@ export const Div = styled.div`
             font-size: .72rem;
             margin: 10px 5px;
             background: var(--input-color);
-            transition: all .5s ease-in-out ;
+            transition: all .3s ease-in-out ;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -135,6 +183,7 @@ export const Div = styled.div`
 
             &:hover{
                 background: #444166;
+                border: 2px solid rgba(0, 0, 0, .6);
             }
         }
 
