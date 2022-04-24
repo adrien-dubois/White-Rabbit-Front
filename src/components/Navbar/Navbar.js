@@ -75,10 +75,10 @@ const Navbar = () => {
                             <IconContext.Provider value={{ color: 'var(--black-color)', size: '20px'}} >
                             <Dropdown>
                                 <div className="profile" onClick={handleMenu}>
-                                    <img src={user.picture} alt={user.name} />
+                                    <img src={user.result.imageUrl} alt={user.result.name}>{user.result.name.charAt(0)}</img>
                                 </div>
                                 <div className={userMenu ? 'menu active' : 'menu'}>
-                                    <h3>{user.name}</h3>
+                                    <h3>{user.result.name}</h3>
                                     <ul>
                                         <li>
                                             <Link to='/'>
@@ -116,13 +116,13 @@ const Navbar = () => {
 
                             <NavItemBtn>
                                 {button ? (
-                                    <NavBtnLink to='/'>
+                                    <NavBtnLink to='/auth'>
                                         <Button primary>
                                             Connexion
                                         </Button>
                                     </NavBtnLink>
                                 ) : (
-                                    <NavBtnLink to='/'>
+                                    <NavBtnLink to='/auth'>
                                         <Button fontBig primary>
                                             Connexion
                                         </Button>

@@ -7,6 +7,7 @@ import {
 import GlobalStyle from "./globalStyles";
 import Home from "./Home";
 import Article from "./pages/articles/Article";
+import Login from "./pages/Login/Login";
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
             <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/articles' element={<Article/>}/>
+                <Route path="/auth" element={<Login/>}/>
             </Routes>
             
         </Router>
