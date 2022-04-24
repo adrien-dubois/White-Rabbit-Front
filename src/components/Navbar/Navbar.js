@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUser } from 'react-icons/fa';
+import { BiLogOut } from 'react-icons/bi'
 import { IconContext } from 'react-icons/lib';
+import { Link } from "react-router-dom";
 import { Button } from '../../globalStyles';
 import { 
     Nav, 
@@ -12,11 +14,13 @@ import {
     NavItem, 
     NavLinks,
     NavItemBtn,
-    NavBtnLink
+    NavBtnLink,
+    Dropdown
 } from './Navbar.elements';
 
 const Navbar = () => {
 
+    /*----- NAVBAR PART -----*/
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
     const handleClick = () => setClick(!click);
@@ -33,6 +37,12 @@ const Navbar = () => {
     useEffect(() => {
         showButton();
     }, [])
+
+    /*----- DROPDOWN PART -----*/
+    const [userMenu, setUserMenu] = useState(false);
+    const handleMenu = () => setUserMenu(!userMenu);
+
+    const user = null;
 
   return (
     <>
@@ -58,27 +68,69 @@ const Navbar = () => {
                             </NavLinks>
                         </NavItem>
 
-                        <NavItem>
-                            <NavLinks to='/'>
-                                Inscription
-                            </NavLinks>
-                        </NavItem>
+                        {user ? (
 
-                        <NavItemBtn>
-                            {button ? (
-                                <NavBtnLink to='/'>
-                                    <Button primary>
-                                        Connexion
-                                    </Button>
-                                </NavBtnLink>
-                            ) : (
-                                <NavBtnLink to='/'>
-                                    <Button fontBig primary>
-                                        Connexion
-                                    </Button>
-                                </NavBtnLink>
-                            )}
-                        </NavItemBtn>
+                        // DROPDOWN USER MENU
+                        <>
+                            <IconContext.Provider value={{ color: 'var(--black-color)', size: '20px'}} >
+                            <Dropdown>
+                                <div className="profile" onClick={handleMenu}>
+                                    <img src={user.picture} alt={user.name} />
+                                </div>
+                                <div className={userMenu ? 'menu active' : 'menu'}>
+                                    <h3>{user.name}</h3>
+                                    <ul>
+                                        <li>
+                                            <Link to='/'>
+                                                <button>
+                                                    <FaUser/>Profil
+                                                </button>
+                                            </Link>
+                                        </li>
+
+                                        <li>
+                                            <button>
+                                                <FaUser/>Autre
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button>
+                                                <BiLogOut/>Déconnexion
+                                            </button>
+                                        </li>
+                                    </ul>                                    
+                                </div>
+                            </Dropdown>
+                            </IconContext.Provider>
+                        </>
+                        ) : (
+                            
+                            // NOT CONNECTED USER MENU
+                        <>
+                            <NavItem>
+                                <NavLinks to='/'>
+                                    Inscription
+                                </NavLinks>
+                            </NavItem>
+
+                            <NavItemBtn>
+                                {button ? (
+                                    <NavBtnLink to='/'>
+                                        <Button primary>
+                                            Connexion
+                                        </Button>
+                                    </NavBtnLink>
+                                ) : (
+                                    <NavBtnLink to='/'>
+                                        <Button fontBig primary>
+                                            Connexion
+                                        </Button>
+                                    </NavBtnLink>
+                                )}
+                            </NavItemBtn>
+                        </>
+                        )}
 
                     </NavMenu>
 

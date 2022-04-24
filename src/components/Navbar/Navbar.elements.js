@@ -295,3 +295,107 @@ export const Action = styled.div`
 
     }
 `;
+
+export const Dropdown = styled.div`
+position: fixed;
+    top: 20px;
+    right: 180px;
+
+    .profile{
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+
+        img{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+    }
+
+    .menu{
+        position: absolute;
+        top: 120px;
+        right: -100px;
+        padding: 10px 20px;
+        background: var(--white-color);
+        width: 200px;
+        box-sizing: 0 5px 25px rgba(0, 0, 0, .1);
+        border-radius: 15px;
+        transition: .5s ease-in-out;
+        visibility: hidden;
+        opacity: 0;
+
+        &.active{
+            visibility: visible;
+            opacity: 1;
+            top: 80px;
+        }
+
+        &::before{
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50px;
+            width: 20px;
+            height: 20px;
+            background: var(--white-color);
+            transform: rotate(45deg);
+        }
+
+        h3{
+            width: 100%;
+            text-align: center;
+            color: #555;
+            font-weight: 500;
+            line-height: 1.2rem;
+            font-size: 1.1rem;
+            padding: 20px 0;
+        }
+
+        ul{
+            li{
+                padding: 10px 0;
+                border-top: 1px solid rgba(0, 0, 0, .5);
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+
+                button{
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    svg{
+                        margin-right: 10px;
+                        opacity: .5;
+                        transition: .5s ease-in-out;
+                    }
+                }
+
+                a, button{
+                    color: var(--black-color);
+                    font-size: 1rem;
+                    font-weight: 500;
+                    opacity: .5;
+                    border: none;
+                    outline: 0;
+                    background: 0 0;
+                    cursor: pointer;
+                    transition: .5s ease-in-out;
+                }
+
+                &:hover{
+                    svg, a, button{
+                        opacity: .8;
+                    }
+                }
+            }
+            
+
+        }
+
+    }
+`;
