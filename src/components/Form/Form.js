@@ -73,6 +73,7 @@ const Form = ({ currentId, setCurrentId }) => {
             placeholder=' '
             name="creator"
             value={postData.creator}
+            required
             onChange={(e) => setPostData({ ...postData, creator: e.target.value })}
           />
           <label className='input-field__label' htmlFor="creator">Pseudo</label>
@@ -91,6 +92,7 @@ const Form = ({ currentId, setCurrentId }) => {
             placeholder=' '
             name="title"
             value={postData.title}
+            required
             onChange={(e) => setPostData({ ...postData, title: e.target.value })}
           />
           <label className='input-field__label' htmlFor="title">Titre</label>
@@ -109,6 +111,7 @@ const Form = ({ currentId, setCurrentId }) => {
             placeholder=' '
             name="message"
             value={postData.message}
+            required
             onChange={(e) => setPostData({ ...postData, message: e.target.value })}
           />
           <label className='input-field__label' htmlFor="message">Message</label>
@@ -127,6 +130,7 @@ const Form = ({ currentId, setCurrentId }) => {
             placeholder=' '
             name="tags"
             value={postData.tags}
+            required
             onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
           />
           <label className='input-field__label' htmlFor="tags">Tags</label>

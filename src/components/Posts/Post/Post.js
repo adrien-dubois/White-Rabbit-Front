@@ -4,8 +4,12 @@ import { FiMoreHorizontal } from 'react-icons/fi';
 import { Div } from './Post.elements';
 import { IconContext } from 'react-icons';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { deletePost } from '../../../actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
+
+  const dispatch = useDispatch(); 
 
   function truncate(str){
     return str.length >=200 ? str.substring(0, 200) + "..." : str;
@@ -54,7 +58,7 @@ const Post = ({ post, setCurrentId }) => {
                 {post.likeCount} {post.likeCount.length > 0 ? 'Likes' : 'Like'}
             </button>
 
-            <button className='delete' onClick={() => {}}>
+            <button className='delete' onClick={() => dispatch(deletePost(post._id))}>
                 <FaRegTrashAlt/> Supprimer
             </button>
           </div>
