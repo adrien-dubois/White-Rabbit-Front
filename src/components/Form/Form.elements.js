@@ -123,6 +123,10 @@ export const Div = styled.div`
                 height: 33px;
                 border: none;
                 outline: none;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 border-radius: 4px;
                 cursor: pointer;
                 color: var(--white-color);

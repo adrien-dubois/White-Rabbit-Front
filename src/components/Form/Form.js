@@ -12,8 +12,6 @@ import { createPost, updatePost } from '../../actions/posts';
 
 const Form = ({ currentId, setCurrentId }) => {
 
-  const dispatch = useDispatch();
-  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
   const [postData, setPostData] = useState({
     creator: '', 
     title: '',
@@ -21,6 +19,8 @@ const Form = ({ currentId, setCurrentId }) => {
     tags: '',
     selectedFile: ''
   })
+  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if(post) setPostData(post);
@@ -30,14 +30,23 @@ const Form = ({ currentId, setCurrentId }) => {
     e.preventDefault();
 
     if(currentId) {
-      dispatch(updatePost(currentId, postData))
+      dispatch(updatePost(currentId, postData));
     } else {
       dispatch(createPost(postData));
     }
+
+    clear();
   }
 
   const clear = () => {
-    
+    setCurrentId(null);
+    setPostData({
+      creator: '', 
+      title: '',
+      message: '',
+      tags: '',
+      selectedFile: ''
+    });
   }
 
   return (
@@ -137,9 +146,9 @@ const Form = ({ currentId, setCurrentId }) => {
           <button type="submit" className='input-buttons__btn'>
               Envoyer
           </button>
-          <button className='input-buttons__btn-clear' onClick={clear}>
+          <span className='input-buttons__btn-clear' onClick={clear}>
               Effacer
-          </button>
+          </span>
         </div>
 
       </form>

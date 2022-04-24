@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Container } from '../../globalStyles'
 import { LogoWR } from '../../SvgComponent'
-
 
 export const Nav = styled.nav`
     height: 80px;
@@ -15,12 +13,17 @@ export const Nav = styled.nav`
     z-index: 999;
 `;
 
-export const NavbarContainer = styled(Container)`
+export const NavbarContainer = styled.div`
     display: flex;
     justify-content: space-between;
     height: 80px;
-
-    ${Container}
+    z-index: 1;
+    width: 100%;
+    max-width: 1600px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 50px;
+    padding-left: 50px;
 `;
 
 export const NavLogo = styled(Link)`

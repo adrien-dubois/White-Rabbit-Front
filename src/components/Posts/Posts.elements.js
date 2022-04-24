@@ -20,8 +20,8 @@ export const Div = styled.div`
         grid-gap: 20px;
         align-items: stretch;
 
-        .col-6{
-            grid-column: span 6;
+        .col-4{
+            grid-column: span 4;
         }
     }
 `;
