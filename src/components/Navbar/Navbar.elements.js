@@ -53,13 +53,17 @@ export const NavLogo = styled(Link)`
             font-weight: 300;
         }
     }
-    @media screen and (max-width: 440px){
+    @media screen and (max-width: 540px){
         font-size: 1.4rem;
 
         svg{
             width: auto;
             height: 45px;
         }
+    }
+
+    @media screen and (max-width: 392px) {
+        font-size: 1.2rem;
     }
 `;
 

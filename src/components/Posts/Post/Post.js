@@ -61,7 +61,7 @@ const Post = ({ post, setCurrentId }) => {
 
             <button className='thumbsup' onClick={() => dispatch(likePost(post._id))}>
                 <FaRegThumbsUp/>
-                {post.likeCount} {post.likeCount > 1 ? 'Likes' : 'Like'}
+                &nbsp; {post.likeCount} {post.likeCount > 1 ? 'Likes' : 'Like'}
             </button>
 
             <button className='delete' onClick={() => dispatch(deletePost(post._id))}>

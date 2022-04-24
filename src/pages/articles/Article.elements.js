@@ -7,6 +7,11 @@ export const Div = styled.div`
     width: 100%;
     color: var (--white-color);
     font-family: var(--poppins-font);
+
+    @media screen and (max-width: 1005px) {
+        min-height: 100vh;
+        height: 100%;
+    }
 `;
 
 export const Container = styled.div`
@@ -28,6 +33,27 @@ export const Container = styled.div`
 
         .col-3{
             grid-column: span 3;
+        }
+
+        @media screen and (max-width: 1450px){
+            .col-3{
+                grid-column: span 4;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            grid-template-columns: 1fr;
+            flex-direction: row-reverse;
+
+            .col-3{
+                order: 1;
+                grid-column: span 8;
+            }
+
+            .col-8{
+                order: 2;
+                margin-bottom: 2rem;
+            }
         }
     }
 `;

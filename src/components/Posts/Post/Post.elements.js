@@ -147,6 +147,22 @@ export const Div = styled.div`
                 font-weight: 300;
                 margin: .6rem; 
             }
+
+            .thumbsup{
+                svg{
+                    transition: all .3s ease-in;
+                    &:hover{
+                        opacity: .5;
+                    }
+                }
+            }
+
+            .delete{
+                transition: all .3s ease-in;
+                &:hover{
+                    opacity: .5;
+                }
+            }
         }
     }
 `;

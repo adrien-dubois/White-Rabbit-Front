@@ -131,7 +131,7 @@ const Form = ({ currentId, setCurrentId }) => {
             name="tags"
             value={postData.tags}
             required
-            onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+            onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}
           />
           <label className='input-field__label' htmlFor="tags">Tags</label>
         </div>
