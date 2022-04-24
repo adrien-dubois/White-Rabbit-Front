@@ -1,13 +1,18 @@
 import React from 'react'
-import { FaRegThumbsUp, FaRegTrashAlt } from 'react-icons/fa';
-import { FiMoreHorizontal } from 'react-icons/fi';
+import { FaEdit, FaRegThumbsUp, FaRegTrashAlt } from 'react-icons/fa';
 import { Div } from './Post.elements';
 import { IconContext } from 'react-icons';
-import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { deletePost } from '../../../actions/posts';
+import { deletePost, likePost } from '../../../actions/posts';
+
+// TO PUT DATE IN FRENCH WITH MOMENT
+import moment from 'moment';
+import 'moment/locale/fr';
 
 const Post = ({ post, setCurrentId }) => {
+
+  // And after import moment and the good locale, declare locale.
+  moment.locale('fr');
 
   const dispatch = useDispatch(); 
 
@@ -38,7 +43,8 @@ const Post = ({ post, setCurrentId }) => {
               onClick={() => setCurrentId(post._id)}
             >
 
-              <FiMoreHorizontal/>
+              {/* <FiMoreHorizontal/> */}
+              <FaEdit/>
               <p className="tooltip">Éditer le tip</p>
             </button>
           </div>
@@ -53,9 +59,9 @@ const Post = ({ post, setCurrentId }) => {
           {/* ACTIONS */}
           <div className="card-post__actions">
 
-            <button className='thumbsup' onClick={() => {}}>
+            <button className='thumbsup' onClick={() => dispatch(likePost(post._id))}>
                 <FaRegThumbsUp/>
-                {post.likeCount} {post.likeCount.length > 0 ? 'Likes' : 'Like'}
+                {post.likeCount} {post.likeCount > 1 ? 'Likes' : 'Like'}
             </button>
 
             <button className='delete' onClick={() => dispatch(deletePost(post._id))}>

@@ -52,8 +52,8 @@ export const Div = styled.div`
                 background: transparent;
                 cursor: pointer;
                 position: absolute;
-                width: 24px;
-                height: 20px;
+                width: 26px;
+                height: 22px;
                 top: 3%;
                 right: 4%;
                 font-size: 1.2rem;

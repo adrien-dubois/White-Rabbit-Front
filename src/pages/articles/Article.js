@@ -18,7 +18,7 @@ const Article = () => {
   return (
     <Div>
         <Navbar/>
-        <Container style={{ marginTop: '1rem' }}>
+        <Container style={{ marginTop: '2rem' }}>
             <div className="row">
 
                 <div className="col-8">
