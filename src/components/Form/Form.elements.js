@@ -34,6 +34,64 @@ export const Div = styled.div`
             text-shadow: 7px 8px 1px rgba(0, 0, 0, .2);
         }
 
+
+        .area-field{
+            max-width: 380px;
+            width: 100%;
+            height: 110px;
+            margin: 10px 0;
+            border-radius: 35px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            display: grid;
+            grid-template-columns: 15% 85%;
+            padding: 0.4rem;
+            transition: all .2s ease-in;
+
+            &:hover{
+                border: 2px solid rgba(255, 255, 255, .3);
+            }
+
+            &__icon{
+                text-align: center;
+                line-height: 40px;
+                margin-top: 2px;
+                svg{
+                    color: var(--grey-color);
+                    font-size: 1.1rem;
+                }
+            }
+
+            &__textarea{
+                background: none;
+                outline: none;
+                border: none;
+                font-weight: 300;
+                font-size: 1.1rem;
+                color: var(--white-color);
+                resize: none;
+                font-family: var(--poppins-font);
+            }
+
+            &__label{
+                position: absolute;
+                left: 3.5rem;
+                top: .6rem;
+                cursor: text;
+                padding: 0 0.3rem;
+                transition: top 200ms ease-in,
+                            left 200ms ease-in,
+                            font-size 200ms ease-in;
+            }
+
+        }
+
+        .area-field__textarea:focus ~ .area-field__label,
+        .area-field__textarea:not(:placeholder-shown)~.area-field__label{
+            top: -0.6rem;
+            font-size: .8rem;
+            left: 1.2rem;
+        }
+
         .input-field{
             max-width: 380px;
             width: 100%;
@@ -61,7 +119,6 @@ export const Div = styled.div`
             }
 
             &__text{
-                
                 background: none;
                 outline: none;
                 border: none;
@@ -69,7 +126,6 @@ export const Div = styled.div`
                 font-weight: 600;
                 font-size: 1.1rem;
                 color: var(--white-color);
-
             }
 
             &__label{
@@ -81,6 +137,15 @@ export const Div = styled.div`
                 transition: top 200ms ease-in,
                             left 200ms ease-in,
                             font-size 200ms ease-in;
+            }
+
+            &__small{
+                text-align: center;
+                width: 380px;
+                margin: 5px 0;
+                font-size: .75rem;
+                font-weight: 300;
+                font-style: italic;
             }
         }
 

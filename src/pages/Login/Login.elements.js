@@ -35,7 +35,7 @@ export const Div = styled.div`
 
         .signin-signup{
             position: absolute;
-            top: 25%;
+            top: 20%;
             width: 100%;
             display: grid;
             grid-template-columns: repeat(2,1fr);
@@ -47,7 +47,7 @@ export const Div = styled.div`
                 img{
                     position: absolute;
                     left: 4%;
-                    top: -3rem;
+                    top: -1rem;
                 }
             }
 
@@ -103,6 +103,7 @@ export const Div = styled.div`
                 position: relative;
                 z-index: 2;
                 .switch{
+                    cursor: pointer;
                     appearance: none;
                     background: rgba(255, 255, 255, 0.05);
                     backdrop-filter: blur(5px);
@@ -135,6 +136,7 @@ export const Div = styled.div`
                     position: relative;
                     left: -3rem;
                     transition: all 0.3s ease-in-out;
+                    cursor: pointer;
                 }
 
                 input:checked.switch + label::before{

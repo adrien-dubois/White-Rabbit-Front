@@ -99,22 +99,22 @@ const Form = ({ currentId, setCurrentId }) => {
         </div>
 
         {/* MESSAGE */}
-        <div className="input-field blue-input">
-          <div className="input-field__icon">
+        <div className="area-field blue-input">
+          <div className="area-field__icon">
             <FaEnvelope/>
           </div>
-          <input 
-            type="text"
+          <textarea
             id='message'
-            className='input-field__text'
+            className='area-field__textarea'
             autoComplete='off' 
             placeholder=' '
             name="message"
             value={postData.message}
             required
             onChange={(e) => setPostData({ ...postData, message: e.target.value })}
-          />
-          <label className='input-field__label' htmlFor="message">Message</label>
+          >
+          </textarea>
+          <label className='area-field__label' htmlFor="message">Message</label>
         </div>
 
         {/* TAGS */}
@@ -134,6 +134,7 @@ const Form = ({ currentId, setCurrentId }) => {
             onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}
           />
           <label className='input-field__label' htmlFor="tags">Tags</label>
+          <p className='input-field__small'>Séparer les tags par une virgule sans espaces</p>
         </div>
 
         {/* IMAGES */}

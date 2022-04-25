@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaBars, FaTimes, FaUser } from 'react-icons/fa';
 import { BiLogOut } from 'react-icons/bi'
 import { IconContext } from 'react-icons/lib';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from '../../globalStyles';
 import { 
     Nav, 
@@ -15,11 +15,15 @@ import {
     NavLinks,
     NavItemBtn,
     NavBtnLink,
-    Dropdown
+    Dropdown,
 } from './Navbar.elements';
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
     /*----- NAVBAR PART -----*/
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
@@ -42,7 +46,26 @@ const Navbar = () => {
     const [userMenu, setUserMenu] = useState(false);
     const handleMenu = () => setUserMenu(!userMenu);
 
-    const user = null;
+    /*----- AUTH USER PART -----*/
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+    const logout = () => {
+        dispatch({ type: 'LOGOUT' })
+
+        navigate('/');
+
+        setUser(null);
+    }
+
+    // console.log(user);
+
+    useEffect(() => {
+        const token = user?.token;
+
+        // JWT ...
+
+        setUser(JSON.parse(localStorage.getItem('profile')))
+    }, [location])
 
   return (
     <>
@@ -68,6 +91,18 @@ const Navbar = () => {
                             </NavLinks>
                         </NavItem>
 
+                        <NavItem>
+                            <NavLinks to='/articles'>
+                                Tips
+                            </NavLinks>
+                        </NavItem>
+
+                        <NavItem>
+                            <NavLinks to='/'>
+                                Chat
+                            </NavLinks>
+                        </NavItem>
+
                         {user ? (
 
                         // DROPDOWN USER MENU
@@ -75,7 +110,11 @@ const Navbar = () => {
                             <IconContext.Provider value={{ color: 'var(--black-color)', size: '20px'}} >
                             <Dropdown>
                                 <div className="profile" onClick={handleMenu}>
-                                    <img src={user.result.imageUrl} alt={user.result.name}>{user.result.name.charAt(0)}</img>
+                                    <img 
+                                        src={user?.result.imageUrl} 
+                                        alt={user.result.name}
+                                        referrerPolicy="no-referrer"
+                                    />
                                 </div>
                                 <div className={userMenu ? 'menu active' : 'menu'}>
                                     <h3>{user.result.name}</h3>
@@ -95,7 +134,7 @@ const Navbar = () => {
                                         </li>
 
                                         <li>
-                                            <button>
+                                            <button onClick={logout} >
                                                 <BiLogOut/>Déconnexion
                                             </button>
                                         </li>
@@ -108,12 +147,6 @@ const Navbar = () => {
                             
                             // NOT CONNECTED USER MENU
                         <>
-                            <NavItem>
-                                <NavLinks to='/'>
-                                    Inscription
-                                </NavLinks>
-                            </NavItem>
-
                             <NavItemBtn>
                                 {button ? (
                                     <NavBtnLink to='/auth'>

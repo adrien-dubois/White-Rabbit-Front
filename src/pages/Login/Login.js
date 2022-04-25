@@ -1,18 +1,28 @@
 import React, { useState } from 'react'
 import { GoogleLogin } from 'react-google-login';
+
+/*----- IMPORT STYLED COMPONENTS -----*/
 import Navbar from '../../components/Navbar/Navbar'
 import { Div } from './Login.elements'
-import auth from '../../assets/img/auth.png'
 import Input from '../../components/Input/Input'
 import InputPassword from '../../components/Input/InputPassword'
+import auth from '../../assets/img/auth.png'
+
+/*----- IMPORT ICONS -----*/
 import { FaEnvelope, FaUser, FaUserCircle, FaUserPlus } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc'
 import { IconContext } from 'react-icons'
+
+/*----- IMPORT HOOKS -----*/
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
 
+  /*----- HOOKS STATES -----*/
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   /*----- FORM FIELDS STATE -----*/
   const [email, setEmail] = useState('');
@@ -42,6 +52,10 @@ const Login = () => {
         type: 'AUTH',
         data: { result, token }
       });
+
+      // Once authenticated, navigate to home directly
+      navigate('/');
+
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +65,7 @@ const Login = () => {
     console.log("La connexion à Google n'a pas fonctionné. Essayez à nouveau plus tard");
   }
 
-
+  /*----- DOM RENDER -----*/
   return (
     <Div>
         <Navbar/>
