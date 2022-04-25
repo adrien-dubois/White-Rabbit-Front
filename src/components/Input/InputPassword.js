@@ -5,7 +5,6 @@ import { Div } from './InputPassword.elements'
 
 const InputPassword = ({
     handleChange,
-    value,
     name,
     placeholder
 }) => {
@@ -24,7 +23,6 @@ const InputPassword = ({
             onChange={handleChange}
             required
             autoComplete='off'
-            value={value}
             placeholder={placeholder}
         />
         <div className="show" onClick={togglePassword}>

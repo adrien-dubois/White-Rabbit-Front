@@ -17,6 +17,7 @@ import { IconContext } from 'react-icons'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+const initialState = { name: '', email: '', password: '', confirmPassword: '' };
 
 const Login = () => {
 
@@ -24,22 +25,26 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  /*----- FORM FIELDS STATE -----*/
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [confirm, setConfirm] = useState('');
-
   /*----- SWITCH FORM STATE -----*/
   const [isSignUp, setIsSignUp] = useState(false);
   const switchForm = () => setIsSignUp(!isSignUp);
 
-  const handleSubmit = () => {
+  /*----- FORM FIELDS STATE -----*/
+  const [formData, setFormData] = useState(initialState);
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(formData);
   }
 
-  const handleChange = () => {
-
+  // This handler will target the right input to the right valu in the initial state
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   }
 
   /*----- GOOGLE AUTH PART -----*/
@@ -93,9 +98,8 @@ const Login = () => {
                     <Input 
                       icon={<FaUser/>}
                       type="text"
-                      value={name}
                       placeholder="Pseudo"
-                      name="pseudo"
+                      name="name"
                       handleChange={handleChange}
                     />
                   </>
@@ -103,14 +107,12 @@ const Login = () => {
                 <Input
                   icon={<FaEnvelope/>}
                   type="email"
-                  value={email}
                   placeholder="E-Mail"
                   name="email"
                   handleChange={handleChange}
                 />
 
                 <InputPassword
-                  value={password}
                   name="password"
                   handleChange={handleChange}
                   placeholder="Mot de passe"
@@ -120,7 +122,6 @@ const Login = () => {
                   name="confirmPassword" 
                   placeholder="Confirmation mot de passe" 
                   handleChange={handleChange}
-                  value={confirm}
                 />}
 
                 <button type="submit" className='btn'>

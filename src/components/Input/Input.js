@@ -5,7 +5,6 @@ const Input = ({
     handleChange,
     icon, 
     type, 
-    value, 
     placeholder,
     name
 }) => {
@@ -21,7 +20,6 @@ const Input = ({
             onChange={handleChange}
             required
             autoComplete='off'
-            value={value}
             placeholder={placeholder}
         />
     </Div>
