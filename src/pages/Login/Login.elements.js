@@ -61,6 +61,7 @@ export const Div = styled.div`
 
                 .title{
                     font-size: 2.2rem;
+                    font-weight: 700;
                     margin-bottom: 10px;
                     background-color: #fff;
                     background-image: radial-gradient(at 4% 36%, hsla(0,0%,100%,1) 0, transparent 53%), radial-gradient(at 100% 60%, rgb(0, 0, 0) 0, transparent 50%);
@@ -85,7 +86,7 @@ export const Div = styled.div`
                     color: var(--white-color);
                     text-transform: uppercase;
                     font-weight: 600;
-                    margin: 10px 0;
+                    margin: 15px 0;
                     background-image: linear-gradient(to right, #f43b47 0%, #453a94 100%);
                     background-size: 200% auto;
                     box-shadow: 0 0 10px #eee;
@@ -94,6 +95,71 @@ export const Div = styled.div`
                     &:hover{
                         background-position: right center;
                     }
+                }
+            }
+
+            /* SWITCH PART */
+            .switch-form{
+                position: relative;
+                z-index: 2;
+                .switch{
+                    appearance: none;
+                    background: rgba(255, 255, 255, 0.05);
+                    backdrop-filter: blur(5px);
+                    -webkit-backdrop-filter: blur(5px);
+                    width: 4rem;
+                    height: 1.5rem;
+                    border-radius: 1.5rem;
+                    vertical-align: middle;
+                    transition: all 0.3s ease-in-out;
+                }
+
+                .switch + label{
+                    margin-left: -0.8rem;
+                }
+
+                input:checked.switch{
+                    background: #a8a8a853;
+                    backdrop-filter: blur(5px);
+                    -webkit-backdrop-filter: blur(5px);
+                }
+
+                .switch + label::before{
+                    display: inline-block;
+                    content: '';
+                    background-color: white;
+                    height: 1.2rem;
+                    width: 1.2rem;
+                    border-radius: 50%;
+                    vertical-align: middle;
+                    position: relative;
+                    left: -3rem;
+                    transition: all 0.3s ease-in-out;
+                }
+
+                input:checked.switch + label::before{
+                    position: relative;
+                    left: -0.5rem;
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+
+            .google-btn{
+                margin: 0 auto;
+                margin-top: 1rem;
+                padding: 10px 15px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: #4285F4;
+                color: var(--white-color);
+                cursor: pointer;
+
+                svg{
+                    height: 1.5em;
+                    width: 1.5em;
+                    margin-right: .5rem;
+                    background-color: #fff;
                 }
             }
         }

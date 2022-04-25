@@ -6,7 +6,8 @@ import { Div } from './InputPassword.elements'
 const InputPassword = ({
     handleChange,
     value,
-    name
+    name,
+    placeholder
 }) => {
 
     const [passwordShown, setPasswordShown] = useState(false)
@@ -24,7 +25,7 @@ const InputPassword = ({
             required
             autoComplete='off'
             value={value}
-            placeholder="Mot de passe"
+            placeholder={placeholder}
         />
         <div className="show" onClick={togglePassword}>
             {passwordShown ? <BiHide/> : <BiShow/>}
