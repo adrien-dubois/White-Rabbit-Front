@@ -43,7 +43,7 @@ export const Div = styled.div`
             border-radius: 35px;
             border: 2px solid rgba(0, 0, 0, 0.3);
             display: grid;
-            grid-template-columns: 15% 85%;
+            grid-template-columns: 15% 83% 2%;
             padding: 0.4rem;
             transition: all .2s ease-in;
 
@@ -70,6 +70,24 @@ export const Div = styled.div`
                 color: var(--white-color);
                 resize: none;
                 font-family: var(--poppins-font);
+
+                &::-webkit-scrollbar-track {
+                    padding: 2px 0;
+                    background-color: #404040;
+                    border-radius: 35px;
+                    margin-right: 15px;
+                }
+
+                &::-webkit-scrollbar {
+                    width: 10px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    border-radius: 10px;
+                    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                    background-color: #737272;
+                    border: 1px solid #000;
+                }
             }
 
             &__label{

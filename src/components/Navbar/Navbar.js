@@ -18,6 +18,8 @@ import {
     Dropdown,
 } from './Navbar.elements';
 import { useDispatch } from "react-redux";
+import { InitialImage } from "../InitialImage";
+import { RandomColor } from "../RandomColor";
 
 const Navbar = () => {
 
@@ -57,7 +59,10 @@ const Navbar = () => {
         setUser(null);
     }
 
-    // console.log(user);
+    /*----- MANAGE USER IMAGE -----*/
+    const imgSrc = user?.result.imageUrl;
+    const initial = user?.result.name.charAt(0);
+
 
     useEffect(() => {
         const token = user?.token;
@@ -111,9 +116,10 @@ const Navbar = () => {
                             <Dropdown>
                                 <div className="profile" onClick={handleMenu}>
                                     <img 
-                                        src={user?.result.imageUrl} 
+                                        src={imgSrc ? imgSrc : InitialImage(200, initial, RandomColor())} 
                                         alt={user.result.name}
                                         referrerPolicy="no-referrer"
+                                        
                                     />
                                 </div>
                                 <div className={userMenu ? 'menu active' : 'menu'}>
