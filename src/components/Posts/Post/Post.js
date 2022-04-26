@@ -32,7 +32,7 @@ const Post = ({ post, setCurrentId }) => {
 
           {/* TEXT OVERLAY */}
           <div className="card-post__overlay">
-            <h6>{post.creator}</h6>
+            <h6>{post.name}</h6>
             <p>{moment(post.createdAt).fromNow()}</p>
           </div>
 
@@ -61,7 +61,7 @@ const Post = ({ post, setCurrentId }) => {
 
             <button className='thumbsup' onClick={() => dispatch(likePost(post._id))}>
                 <FaRegThumbsUp/>
-                &nbsp; {post.likeCount} {post.likeCount > 1 ? 'Likes' : 'Like'}
+                &nbsp; {post.likes.length} {post.likes > 1 ? 'Likes' : 'Like'}
             </button>
 
             <button className='delete' onClick={() => dispatch(deletePost(post._id))}>

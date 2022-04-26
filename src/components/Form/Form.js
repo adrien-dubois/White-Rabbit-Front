@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { 
   FaEnvelope, 
   FaHashtag, 
-  FaTags, 
-  FaUser 
+  FaTags 
 } from 'react-icons/fa'
 import { Div } from './Form.elements';
 import FileBase from 'react-file-base64';
@@ -12,8 +11,7 @@ import { createPost, updatePost } from '../../actions/posts';
 
 const Form = ({ currentId, setCurrentId }) => {
 
-  const [postData, setPostData] = useState({
-    creator: '', 
+  const [postData, setPostData] = useState({ 
     title: '',
     message: '',
     tags: '',
@@ -21,6 +19,7 @@ const Form = ({ currentId, setCurrentId }) => {
   })
   const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
     if(post) setPostData(post);
@@ -30,9 +29,9 @@ const Form = ({ currentId, setCurrentId }) => {
     e.preventDefault();
 
     if(currentId) {
-      dispatch(updatePost(currentId, postData));
+      dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
     } else {
-      dispatch(createPost(postData));
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
     }
 
     clear();
@@ -40,13 +39,24 @@ const Form = ({ currentId, setCurrentId }) => {
 
   const clear = () => {
     setCurrentId(null);
-    setPostData({
-      creator: '', 
+    setPostData({ 
       title: '',
       message: '',
       tags: '',
       selectedFile: ''
     });
+  }
+
+  if(!user?.result?.name) {
+    return (
+      <Div>
+        <div className="form-tip">
+          <h6 className="unlogged-title">
+            Merci de vous connecter, ou de vous inscrire afin de poster vos propres tips ou liker ceux des autres.
+          </h6>
+        </div>
+      </Div>
+    )
   }
 
   return (
@@ -60,24 +70,6 @@ const Form = ({ currentId, setCurrentId }) => {
       >
         <h6 className='form-title'>{currentId ? 'Modifier' : 'Créer'} un tip</h6>
 
-        {/* CREATOR */}
-        <div className="input-field blue-input">
-          <div className="input-field__icon">
-            <FaUser/>
-          </div>
-          <input 
-            type="text"
-            id='creator'
-            className='input-field__text'
-            autoComplete='off' 
-            placeholder=' '
-            name="creator"
-            value={postData.creator}
-            required
-            onChange={(e) => setPostData({ ...postData, creator: e.target.value })}
-          />
-          <label className='input-field__label' htmlFor="creator">Pseudo</label>
-        </div>
 
         {/* TITLE */}
         <div className="input-field blue-input">

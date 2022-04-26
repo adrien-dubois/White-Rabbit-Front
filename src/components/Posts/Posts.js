@@ -8,7 +8,6 @@ import { Div } from './Posts.elements'
 const Posts = ({ setCurrentId }) => {
   const posts = useSelector((state) => state.posts);
 
-  console.log(posts);
   return (
       !posts.length ? <Circle/> : (
         <Div>

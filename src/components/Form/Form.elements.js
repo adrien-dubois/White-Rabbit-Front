@@ -34,11 +34,22 @@ export const Div = styled.div`
             text-shadow: 7px 8px 1px rgba(0, 0, 0, .2);
         }
 
+        .unlogged-title{
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: white;
+            font-style: italic;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            text-shadow: 7px 8px 1px rgba(0, 0, 0, .2);
+        }
+
 
         .area-field{
             max-width: 380px;
             width: 100%;
-            height: 110px;
+            height: 150px;
             margin: 10px 0;
             border-radius: 35px;
             border: 2px solid rgba(0, 0, 0, 0.3);
