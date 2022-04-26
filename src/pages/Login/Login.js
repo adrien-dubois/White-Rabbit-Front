@@ -16,6 +16,7 @@ import { IconContext } from 'react-icons'
 /*----- IMPORT HOOKS -----*/
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { signup, signin } from '../../actions/auth';
 
 const initialState = { name: '', email: '', password: '', confirmPassword: '' };
 
@@ -36,7 +37,12 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    if(isSignUp) {
+      dispatch(signup(formData, navigate));
+    } else {
+      dispatch(signin(formData, navigate));
+
+    }
   }
 
   // This handler will target the right input to the right valu in the initial state
