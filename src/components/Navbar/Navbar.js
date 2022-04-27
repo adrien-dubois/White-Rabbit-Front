@@ -1,8 +1,15 @@
+/*----- IMPORT REACT & DEPENDECIES -----*/
 import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import decode from 'jwt-decode';
+
+/*----- IMPORT REACT ICONS -----*/
 import { FaBars, FaTimes, FaUser } from 'react-icons/fa';
 import { BiLogOut } from 'react-icons/bi'
 import { IconContext } from 'react-icons/lib';
-import { Link, useLocation, useNavigate } from "react-router-dom";
+
+/*----- IMPORT STYLED COMPONENTS -----*/
 import { Button } from '../../globalStyles';
 import { 
     Nav, 
@@ -17,12 +24,14 @@ import {
     NavBtnLink,
     Dropdown,
 } from './Navbar.elements';
-import { useDispatch } from "react-redux";
+
+/*----- IMPORT COMPONENTS -----*/
 import { InitialImage } from "../InitialImage";
 import { RandomColor } from "../RandomColor";
 
 const Navbar = () => {
 
+    /*----- HOOKS -----*/
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -63,11 +72,15 @@ const Navbar = () => {
     const imgSrc = user?.result.imageUrl;
     const initial = user?.result.name.charAt(0);
 
-
+    /*----- JWT TOKEN -----*/
     useEffect(() => {
         const token = user?.token;
 
-        // JWT ...
+        if(token){
+            const decodedToken = decode(token);
+
+            if(decodedToken.exp * 1000 < new Date().getTime()) logout();
+        }
 
         setUser(JSON.parse(localStorage.getItem('profile')))
     }, [location])

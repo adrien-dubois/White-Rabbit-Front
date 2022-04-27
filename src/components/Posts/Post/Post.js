@@ -14,7 +14,8 @@ const Post = ({ post, setCurrentId }) => {
   // And after import moment and the good locale, declare locale.
   moment.locale('fr');
 
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile')); 
 
   function truncate(str){
     return str.length >=200 ? str.substring(0, 200) + "..." : str;
@@ -36,18 +37,19 @@ const Post = ({ post, setCurrentId }) => {
             <p>{moment(post.createdAt).fromNow()}</p>
           </div>
 
-          {/* MORE BUTTON */}
+          {/* EDIT BUTTON */}
+          {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+
           <div className="card-post__overlay2">
             <button 
               className='more' 
               onClick={() => setCurrentId(post._id)}
             >
-
-              {/* <FiMoreHorizontal/> */}
               <FaEdit/>
               <p className="tooltip">Éditer le tip</p>
             </button>
           </div>
+          )}
 
           {/* DETAILS */}
           <div className="card-post__details">
@@ -59,14 +61,16 @@ const Post = ({ post, setCurrentId }) => {
           {/* ACTIONS */}
           <div className="card-post__actions">
 
-            <button className='thumbsup' onClick={() => dispatch(likePost(post._id))}>
+            <button className='thumbsup' disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
                 <FaRegThumbsUp/>
-                &nbsp; {post.likes.length} {post.likes > 1 ? 'Likes' : 'Like'}
+                &nbsp; {post.likes.length} {post.likes.length > 1 ? 'Likes' : 'Like'}
             </button>
 
-            <button className='delete' onClick={() => dispatch(deletePost(post._id))}>
-                <FaRegTrashAlt/> Supprimer
-            </button>
+            {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+              <button className='delete' onClick={() => dispatch(deletePost(post._id))}>
+                  <FaRegTrashAlt/> Supprimer
+              </button>
+            )}
           </div>
 
         </div>
