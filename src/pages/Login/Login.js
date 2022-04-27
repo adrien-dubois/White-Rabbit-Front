@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { GoogleLogin } from 'react-google-login';
+import FileBase from 'react-file-base64';
 
 /*----- IMPORT STYLED COMPONENTS -----*/
 import Navbar from '../../components/Navbar/Navbar'
@@ -32,7 +33,6 @@ const Login = () => {
 
   /*----- FORM FIELDS STATE -----*/
   const [formData, setFormData] = useState(initialState);
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -124,11 +124,24 @@ const Login = () => {
                   placeholder="Mot de passe"
                 />
 
-                {isSignUp && <InputPassword 
-                  name="confirmPassword" 
-                  placeholder="Confirmation mot de passe" 
-                  handleChange={handleChange}
-                />}
+                {isSignUp && 
+                <>
+                  <InputPassword 
+                    name="confirmPassword" 
+                    placeholder="Confirmation mot de passe" 
+                    handleChange={handleChange}
+                  />
+                  
+                  <div className="input-file">
+                    <FileBase
+                      type="file"
+                      value='test'
+                      multiple={false}
+                      onDone={({base64}) => setFormData({ ...formData, imageUrl: base64 })}
+                    />
+                  </div>
+                </>
+                }
 
                 <button type="submit" className='btn'>
                   {isSignUp ? "Inscription" : "Connexion"}
@@ -150,6 +163,8 @@ const Login = () => {
                   </label>
                 </div>
               </form>
+              {!isSignUp &&
+              
               <GoogleLogin 
                 clientId={process.env.REACT_APP_GOOGLE_ID}
                 render={(renderProps) => (
@@ -163,6 +178,7 @@ const Login = () => {
                 onFailure={googleFailure}
                 cookiePolicy="single_host_origin"
               />
+              }
             </div>
           </div>
         </div>
