@@ -35,4 +35,42 @@ export const Div = styled.div`
             grid-template-columns: 1fr;
         }
     }
+
+    .paginationBtn{
+        width: 80%;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        margin-top: 1rem;
+
+        li{
+            padding: 6px 15px;
+        }
+    }
+
+    .activeBtn{
+        color: #F43B47;
+        border: 2px solid #F43B47;
+        border-radius: 50%;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .prevBtn, .nextBtn{
+        cursor: pointer;
+        padding: 6px 10px;
+        border: 1px solid var(--white-color);
+    }
+
+    .disableBtn{
+        color: var(--grey-color);
+        
+        .prevBtn, .nextBtn{
+            cursor: default;
+            border: none;
+            border: 1px solid var(--grey-color);
+        }
+    }
 `;
