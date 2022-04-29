@@ -7,10 +7,15 @@ import { useDispatch } from 'react-redux';
 import { getPosts } from '../../actions/posts';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
 
 const Article = () => {
 
     const dispatch = useDispatch();
+    const query = useQuery();
+    const history = useNavigate();
     const [currentId, setCurrentId] = useState(null);
 
     useEffect(()=> {

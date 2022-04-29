@@ -47,30 +47,40 @@ export const Div = styled.div`
 
         li{
             padding: 6px 15px;
+            margin: 0 10px;
+            transition: all .3s ease-in;
+            
+            &:hover{
+                color: var(--white-color); 
+                background-color: #F43B47;
+            }
         }
     }
 
     .activeBtn{
         color: #F43B47;
         border: 2px solid #F43B47;
-        border-radius: 50%;
         font-weight: 600;
         cursor: pointer;
+        border-radius: 50%;
     }
 
     .prevBtn, .nextBtn{
         cursor: pointer;
-        padding: 6px 10px;
         border: 1px solid var(--white-color);
+        border-radius: 4px;
     }
-
+    
     .disableBtn{
         color: var(--grey-color);
+        border: 1px solid var(--grey-color);
+        pointer-events: none;
+        border-radius: 4px;
         
         .prevBtn, .nextBtn{
-            cursor: default;
             border: none;
-            border: 1px solid var(--grey-color);
         }
+
+
     }
 `;
