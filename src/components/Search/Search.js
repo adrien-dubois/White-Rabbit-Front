@@ -23,6 +23,7 @@ const Search = () => {
   const searchPost = () => {
     if (search.trim() || tags ) {
       dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+      history(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     } else {
       history('/posts')
     }
