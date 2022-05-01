@@ -48,7 +48,10 @@ export const Div = styled.div`
         li{
             padding: 6px 15px;
             margin: 0 10px;
+            border: 1px solid var(--white-color);
+            cursor: pointer;
             transition: all .3s ease-in;
+            border-radius: 4px;
             
             &:hover{
                 color: var(--white-color); 
@@ -59,23 +62,21 @@ export const Div = styled.div`
 
     .activeBtn{
         color: #F43B47;
-        border: 2px solid #F43B47;
+        border: 2px solid #F43B47 !important;
         font-weight: 600;
         cursor: pointer;
-        border-radius: 50%;
+        border-radius: 50% !important;
     }
 
     .prevBtn, .nextBtn{
         cursor: pointer;
-        border: 1px solid var(--white-color);
         border-radius: 4px;
     }
     
     .disableBtn{
         color: var(--grey-color);
-        border: 1px solid var(--grey-color);
+        border: none !important;
         pointer-events: none;
-        border-radius: 4px;
         
         .prevBtn, .nextBtn{
             border: none;

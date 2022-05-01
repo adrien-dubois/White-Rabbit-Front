@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export const Div = styled.div`
     background-image: var(--dark-welcome);
     background-color: var(--welcome-bg);
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     width: 100%;
     color: var (--white-color);
     font-family: var(--poppins-font);

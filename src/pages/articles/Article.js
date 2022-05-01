@@ -5,17 +5,11 @@ import Posts from '../../components/Posts/Posts'
 import Form from '../../components/Form/Form'
 import { useDispatch } from 'react-redux';
 import { getPosts } from '../../actions/posts';
-import { useLocation, useNavigate } from 'react-router-dom';
-
-function useQuery() {
-    return new URLSearchParams(useLocation().search);
-}
+import Search from '../../components/Search/Search';
 
 const Article = () => {
 
     const dispatch = useDispatch();
-    const query = useQuery();
-    const history = useNavigate();
     const [currentId, setCurrentId] = useState(null);
 
     useEffect(()=> {
@@ -32,6 +26,7 @@ const Article = () => {
                 </div>
 
                 <div className="col-3">
+                    <Search/>
                     <Form currentId={currentId} setCurrentId={setCurrentId} />
                 </div>
 
